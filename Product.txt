@@ -1,0 +1,51 @@
+In [3]: from home.models import Product
+
+In [4]: Product.objects.create(name='Laptop', price=500, description="Dell Laptop")
+Out[4]: <Product: Product object (1)>
+
+In [5]: Product.objects.create(name='Keyboard', price=100, description="Gaming Keyboard")
+Out[5]: <Product: Product object (2)>
+
+In [6]: Product.objects.create(name='Mouse', price=50, description="Gaming Mouse")
+Out[6]: <Product: Product object (3)>
+
+In [7]: Product.objects.all()
+Out[7]: <QuerySet [<Product: Product object (1)>, <Product: Product object (2)>, <Product: Product object (3)>]>
+
+In [2]: Product.objects.all()
+Out[2]: <QuerySet [<Product: Laptop>, <Product: Keyboard>, <Product: Mouse>]>
+
+In [3]: Product.objects.all().get(id=1)
+Out[3]: <Product: Laptop>
+
+In [4]: Product.objects.all().get(id=2
+   ...: )
+Out[4]: <Product: Keyboard>
+
+In [5]: Product.objects.all().get(id=6)
+---------------------------------------------------------------------------
+DoesNotExist: Product matching query does not exist.
+
+In [6]: Product.objects.all().filter(id=6)
+Out[6]: <QuerySet []>
+
+In [7]: all = Product.objects.all()
+
+In [8]: for item in all:
+   ...:     print(item.name)
+   ...:
+Laptop
+Keyboard
+Mouse
+
+In [9]: Product.objects.all().filter(id=1).update(name="Computer")
+Out[9]: 1
+
+In [10]: Product.objects.all()
+Out[10]: <QuerySet [<Product: Computer>, <Product: Keyboard>, <Product: Mouse>]>
+
+In [11]: Product.objects.all().filter(id=3).delete()
+Out[11]: (1, {'home.Product': 1})
+
+In [12]: Product.objects.all()
+Out[12]: <QuerySet [<Product: Computer>, <Product: Keyboard>]>

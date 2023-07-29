@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-5 ">
+  <form class="card p-3 col-6 shadow-lg mx-auto" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <h2 class="mx-auto">Update Recipes</h2>
+    <div class="mb-3">
+      <label for="recipe-name" class="form-label"
+        >Recipe Name</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="recipe-name"
+        name="recipe-name"
+        value="{{recipe.name}}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipe-desc" class="form-label"
+        >Recipe Description</label
+      >
+      <textarea
+        class="form-control"
+        id="recipe-desc"
+        name="recipe-desc"
+        rows="3"
+      >{{recipe.description}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="recipe-img" class="form-label"
+          >Recipe Image</label
+        >
+        <img class="card mx-auto"src=/media/{{recipe.image}} alt="" height="200px" width="200px">
+        <input
+          type="file"
+          class="form-control"
+          id="recipe-img"
+          name="recipe-img"
+        />
+      </div>
+      <div class="mb-3 mx-auto">
+        <input type="submit" value="Update Recipe" class="btn btn-success"/>
+      </div>
+  </form>
+</div>
+
+{% endblock %}

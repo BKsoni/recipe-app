@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<div class="alert alert-primary d-flex justify-content-center m-3" role="alert">
+  
+  {% if request.user.is_authenticated %}
+  <p class="m-0 fw-semibold fs-4">Welcome to the Recipe App, {{request.user.username}} !</p>
+  {% endif %}
+</div>
+
+<div class="container mt-5 ">
+  <form class="card p-3 col-6 shadow-lg mx-auto" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <h2 class="mx-auto">Add Recipes</h2>
+    <div class="mb-3">
+      <label for="recipe-name" class="form-label"
+        >Recipe Name</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="recipe-name"
+        name="recipe-name"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="recipe-desc" class="form-label"
+        >Recipe Description</label
+      >
+      <textarea
+        class="form-control"
+        id="recipe-desc"
+        name="recipe-desc"
+        rows="3"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="recipe-img" class="form-label"
+          >Recipe Image</label
+        >
+        <input
+          type="file"
+          class="form-control"
+          id="recipe-img"
+          name="recipe-img"
+        />
+      </div>
+      <div class="mb-3 mx-auto">
+        <input type="submit" value="Add Recipe" class="btn btn-success"/>
+      </div>
+  </form>
+</div>
+
+{% endblock %}

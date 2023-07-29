@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Student List</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th scope="col">ID</th>
+        {% for key in students.0.keys %}
+        <th scope="col">{{ key }}</th>
+        {% endfor %}
+        <th scope="col">Can vote?</th>
+  </thead>
+  <tbody>
+{% for student in students %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.age}}</td>
+      {% if student.age >= 18 %} <td style="background: green;">Yes</td> {% else %}<td style="background: red;">No</td> {% endif %}
+      
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

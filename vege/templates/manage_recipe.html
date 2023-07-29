@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container mt-5 card shadow-lg col-9">
+  <h2 class="mx-auto mt-3">Manage Recipes</h2>
+  <table class="table table-bordered border-primary p-3 ">
+    
+    <div class="container-fluid col-6 d-flex">
+      <form>
+      <input type="text" name="search" id="search" class="form-control m-2" placeholder="Search by Name"/>
+      <button type="submit" class="btn btn-primary m-2">Search</button>
+    </form>
+    </div>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Descripion</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in recipes %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td ><img src=/media/{{recipe.image}} alt="" height="200px" width="200px"></td>
+        <td >{{recipe.name}}</td>
+        <td >{{recipe.description}}</td>
+        <td >
+          <div class="container d-flex justify-content-center">
+          <a href=/delete-recipe/{{recipe.id}} class="btn btn-danger">Delete</a>
+          <a href=/update-recipe/{{recipe.id}} class="btn btn-primary">Update</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
